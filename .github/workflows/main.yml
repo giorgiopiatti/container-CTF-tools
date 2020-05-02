@@ -14,7 +14,7 @@ jobs:
         name: Build & push Docker image
         with:
           image: giorgiopiatti/ctf-tools-libc23
-          tag: ${{ steps.get_version.outputs.VERSION }}
+          tag: latest #${{ steps.get_version.outputs.VERSION }}
           registry: docker.io
           dockerfile: lib23.Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
