@@ -1,7 +1,7 @@
 name: Docker
 on: [push]
 jobs:
-  libc23:
+  build:
     name: Build & publish libc23
     runs-on: ubuntu-latest    
     steps:
@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
         name: Check out code
       - uses: mr-smithers-excellent/docker-build-push@v3
-        name: Build & push Docker image
+        name: Build & push Docker image lib23
         with:
           image: giorgiopiatti/ctf-tools-libc23
           tag: latest #${{ steps.get_version.outputs.VERSION }}
@@ -19,57 +19,30 @@ jobs:
           dockerfile: lib23.Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}$
-  libc27:
-    name: Build & publish libc27
-    runs-on: ubuntu-latest    
-    steps:
-      -  name: Get the version
-         id: get_version
-         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-      - uses: actions/checkout@v2
-        name: Check out code
       - uses: mr-smithers-excellent/docker-build-push@v3
-        name: Build & push Docker image
-        with:
-          image: giorgiopiatti/ctf-tools-libc27
-          tag: latest #${{ steps.get_version.outputs.VERSION }}
-          registry: docker.io
-          dockerfile: lib27.Dockerfile
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-  libc28:
-    name: Build & publish libc28
-    runs-on: ubuntu-latest    
-    steps:
-      -  name: Get the version
-          id: get_version
-          run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-      - uses: actions/checkout@v2
-        name: Check out code
+      name: Build & push Docker image lib27
+      with:
+        image: giorgiopiatti/ctf-tools-libc27
+        tag: latest #${{ steps.get_version.outputs.VERSION }}
+        registry: docker.io
+        dockerfile: lib27.Dockerfile
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}$
       - uses: mr-smithers-excellent/docker-build-push@v3
-        name: Build & push Docker image
-        with:
-          image: giorgiopiatti/ctf-tools-libc28
-          tag: latest #${{ steps.get_version.outputs.VERSION }}
-          registry: docker.io
-          dockerfile: lib28.Dockerfile
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-  libc29:
-    name: Build & publish libc29
-    runs-on: ubuntu-latest    
-    steps:
-      -  name: Get the version
-          id: get_version
-          run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-      - uses: actions/checkout@v2
-        name: Check out code
-      - uses: mr-smithers-excellent/docker-build-push@v3
-        name: Build & push Docker image
+      name: Build & push Docker image lib28
+      with:
+        image: giorgiopiatti/ctf-tools-libc28
+        tag: latest #${{ steps.get_version.outputs.VERSION }}
+        registry: docker.io
+        dockerfile: lib28.Dockerfile
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}$
+        - uses: mr-smithers-excellent/docker-build-push@v3
+        name: Build & push Docker image lib29
         with:
           image: giorgiopiatti/ctf-tools-libc29
           tag: latest #${{ steps.get_version.outputs.VERSION }}
           registry: docker.io
           dockerfile: lib29.Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          password: ${{ secrets.DOCKER_PASSWORD }}$
