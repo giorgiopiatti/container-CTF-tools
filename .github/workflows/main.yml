@@ -27,22 +27,22 @@ jobs:
           registry: docker.io
           dockerfile: lib27.Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}$
-        - uses: mr-smithers-excellent/docker-build-push@v3
-          name: Build & push Docker image lib28
-          with:
-            image: giorgiopiatti/ctf-tools-libc28
-            tag: latest #${{ steps.get_version.outputs.VERSION }}
-            registry: docker.io
-            dockerfile: lib28.Dockerfile
-            username: ${{ secrets.DOCKER_USERNAME }}
-            password: ${{ secrets.DOCKER_PASSWORD }}$
-        - uses: mr-smithers-excellent/docker-build-push@v3
-          name: Build & push Docker image lib29
-          with:
-            image: giorgiopiatti/ctf-tools-libc29
-            tag: latest #${{ steps.get_version.outputs.VERSION }}
-            registry: docker.io
-            dockerfile: lib29.Dockerfile
-            username: ${{ secrets.DOCKER_USERNAME }}
-            password: ${{ secrets.DOCKER_PASSWORD }}$
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: mr-smithers-excellent/docker-build-push@v3
+        name: Build & push Docker image lib28
+        with:
+          image: giorgiopiatti/ctf-tools-libc28
+          tag: latest #${{ steps.get_version.outputs.VERSION }}
+          registry: docker.io
+          dockerfile: lib28.Dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: mr-smithers-excellent/docker-build-push@v3
+        name: Build & push Docker image lib29
+        with:
+          image: giorgiopiatti/ctf-tools-libc29
+          tag: latest #${{ steps.get_version.outputs.VERSION }}
+          registry: docker.io
+          dockerfile: lib29.Dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
