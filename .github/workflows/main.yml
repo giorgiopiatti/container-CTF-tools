@@ -1,0 +1,21 @@
+name: Docker
+on: [push]
+jobs:
+  build:
+    name: Build & publish libc23
+    runs-on: ubuntu-latest    
+    steps:
+      -  name: Get the version
+         id: get_version
+         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      - uses: actions/checkout@v1.0
+        name: Check out code
+      - uses: mr-smithers-excellent/docker-build-push@v3
+        name: Build & push Docker image
+        with:
+          image: giorgiopiatti/ctf-tools-libc23
+          tag: ${{ steps.get_version.outputs.VERSION }}
+          registry: docker.io
+          dockerfile: lib23.Dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
